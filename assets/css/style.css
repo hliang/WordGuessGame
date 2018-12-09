@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    background: black;
+}
+/* p {
+    font-size: 120%;
+} */
+#revealed, #keysTried {
+    /* Monospace stack */
+    font-family: Consolas, "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+nav, .navbar {
+    float: none;
+    text-align: center;
+    display: inline-block;
+}
+
+/* #gamename {
+    padding: 20px 0px;
+} */
+
+.neon {
+    text-align: center;
+    margin: 10px auto;
+    font-family: "Museo", monospace;
+    font-size: 120px;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+}
+
+#usage {
+    color: #eee;
+}
+
+#gameboard {
+    color: rgb(66, 248, 81);
+    text-shadow: 0 0 2px rgb(7, 146, 49), 0 0 8px rgb(7, 146, 49), 0 0 20px rgb(48, 231, 103), 0 0 50px rgb(48, 231, 103);
+}
+
+
+#gameover-msg {
+    height: 90px; 
+    /* border: 2px solid blue;  */
+    background-color: black;
+}
+
+#gameover-win, #gameover-lose {
+    font-size: 1.5em;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>word guessing game</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <div id="header" class="container">
+        <div class="text-center col-sm-12 col-md-12 col-lg-12">
+            <h1 id="gamename" class="neon">LAME GAME</h1>
+            <div id="usage">
+                <p>Press any key to start guessing the fruit 🍎 🍑 🍋 🍌 🥑 🍐 🍆 </p>
+            </div>
+        </div>
+    </div>
+    <div id="game" class="container">
+
+
+
+        <div class="row">
+            <div id="gameboard" class="col-sm-12 col-md-6 col-lg-6 text-center">
+                <h3>Wins: <span id="wins"></span></h3>
+                <h3>Current word: <span id="revealed"></span></h3>
+                <h3>Guesses remaining: <span id="triesLeft"></span></h3>
+                <h3>Letters already tried:<br><span id="keysTried"></span></h3>
+                <br>
+                <div id="gameover-msg">
+                    <p id="gameover-win" style="display: none">😄 Yeah, YOU WIN!!! 😄
+                        <br>Press Enter to start a new game.</p>
+                    <p id="gameover-lose" style="display: none">😱 Oops, try harder!!! 😱
+                        <br> Press Enter to start a new game.</p>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+
+                <div class="container text-center">
+                    <img id="answerImg" src="#" style="display: none; max-width: 400px ">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
+
+
+</body>
+
+</html>
