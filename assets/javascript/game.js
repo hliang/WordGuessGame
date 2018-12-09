@@ -1,10 +1,14 @@
 // var maxTries = 99; // max tries each game
 var wins = 0;
-var answerPool = ["apple", "orange", "banana", "peach", "lemon", "avocado", "pear"];
-var imgPool = ["https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Honeycrisp.jpg/330px-Honeycrisp.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Orange-Whole-%26-Split.jpg/330px-Orange-Whole-%26-Split.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Banana_and_cross_section.jpg/1280px-Banana_and_cross_section.jpg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/White_nectarine_and_cross_section02_edit.jpg/1280px-White_nectarine_and_cross_section02_edit.jpg"];
+var answerPool = {
+    "apple": "assets/images/apple.jpg",
+    "orange": "assets/images/orange.jpg",
+    "banana": "assets/images/banana.jpg",
+    "peach": "assets/images/peach.jpg",
+    "lemon": "assets/images/lemon.jpg",
+    "avocado": "assets/images/avocado.jpg",
+    "pear": "assets/images/pear.jpg"
+};
 
 // declare variables
 var guessgame = {
@@ -17,14 +21,16 @@ var guessgame = {
     gameover: true,
     // initialize the word to display. unreveaded letters are "*"
     newgame: function () {
-        this.randIndx = Math.floor(Math.random() * answerPool.length);
-        this.answer = answerPool[this.randIndx].toUpperCase(); // remove one element from array, assign it to answer  
-        this.imgUrl = imgPool[this.randIndx];
+        this.randIndx = Math.floor(Math.random() * Object.keys(answerPool).length);
+        this.answer0 = Object.keys(answerPool)[this.randIndx]; // original answer, case sensitive
+        this.answer = this.answer0.toUpperCase(); // answer in upper case.
+        this.imgUrl = answerPool[this.answer0];
         this.triesLeft = Math.ceil(this.answer.length * 1.8);
         this.keysTried = [];
         this.revealed = "_".repeat(this.answer.length);
         this.gameover = false;
         this.updatePage();
+        console.log(this.answer0);
     },
 
     // update game based on user input
@@ -40,7 +46,7 @@ var guessgame = {
                 this.triesLeft--;
             }
 
-            // update revealed answer
+            // test if user input letter is in answer, and update revealed answer
             this.revealed = this.updateRevealed(chr);
 
             // update count of wins
@@ -48,8 +54,7 @@ var guessgame = {
                 wins++;
                 this.gameover = true;
                 // remove element from pool, so that it won't reappear in the next games
-                answerPool.splice(this.randIndx, 1);
-                imgPool.splice(this.randIndx, 1);
+                delete answerPool[this.answer0]
             } else if (this.revealed != this.answer && this.triesLeft <= 0) { // lose
                 this.gameover = true;
             }
@@ -57,7 +62,8 @@ var guessgame = {
 
     },
 
-    // update revealed characters
+    // test if user input letter is in answer,
+    // and update revealed characters.
     updateRevealed: function (chr) {
         ret = this.revealed;
         for (var i = 0; i < this.answer.length; i++) {
@@ -73,7 +79,7 @@ var guessgame = {
         document.querySelector("#wins").textContent = wins;
         document.querySelector("#revealed").textContent = this.revealed;
         document.querySelector("#triesLeft").textContent = this.triesLeft;
-        document.querySelector("#keysTried").textContent = "[ " + this.keysTried + " ]";
+        document.querySelector("#keysTried").textContent = "[" + this.keysTried + "]";
         document.querySelector("#gameover-msg").style.background = "none";
 
         if (this.gameover == false) {
@@ -81,6 +87,7 @@ var guessgame = {
             document.querySelector("#gameover-lose").style.display = "none";
             // document.querySelector("#answerImg").style.display = "none";
         } else if (this.revealed === this.answer) { // end of game, win
+            console.log("win!");
             document.querySelector("#gameover-msg").style.background = "yellow";
             document.querySelector("#gameover-win").style.display = "block";
             document.querySelector("#gameover-lose").style.display = "none";
