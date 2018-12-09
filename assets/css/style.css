@@ -1,12 +1,28 @@
 * {
     box-sizing: border-box;
 }
+html, body {
+    height: 100%;
+}
 body {
     background: black;
+    display: flex;
+    flex-direction: column;
 }
-/* p {
-    font-size: 120%;
-} */
+#game {
+    flex: 1 0 auto;
+}
+footer {
+    flex-shrink: 0;
+    border-top: 8px solid #33063b;
+    background-color: #16041a;
+    height: 40px;
+}
+footer a {
+    font-size: 12px;
+    color: rgb(145, 97, 1) ;
+}
+
 #revealed, #keysTried {
     /* Monospace stack */
     font-family: Consolas, "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
