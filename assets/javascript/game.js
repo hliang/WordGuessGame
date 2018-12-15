@@ -10,6 +10,23 @@ var answerPool = {
     "pear": "assets/images/pear.jpg"
 };
 
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+      this.sound.play();
+    }
+    this.stop = function(){
+      this.sound.pause();
+    }
+}
+var soundWin = new sound("assets/music/tada.mp3");
+var soundLose = new sound("assets/music/error.mp3");
+
 // declare variables
 var guessgame = {
     randIndx: 0,
@@ -93,11 +110,13 @@ var guessgame = {
             document.querySelector("#gameover-lose").style.display = "none";
             document.querySelector("#answerImg").style.display = "inline-block";
             document.querySelector("#answerImg").src = this.imgUrl;
+            soundWin.play();
 
         } else if (this.revealed != this.answer && this.triesLeft <= 0) { // end of game, lose
             document.querySelector("#gameover-msg").style.background = "lightblue";
             document.querySelector("#gameover-win").style.display = "none";
             document.querySelector("#gameover-lose").style.display = "block";
+            soundLose.play();
         }
     }
 }
